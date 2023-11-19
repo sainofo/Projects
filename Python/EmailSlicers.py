@@ -5,7 +5,6 @@
 print("Hello! Welcome!") ##intro
 
 ## asking for your email
-print("Enter your email: ")
 email = input("Enter you email: ").strip()
 
 ## getting username and domain by string slicing
