@@ -1,0 +1,46 @@
+---
+title: "Assignment 8"
+author: "Nofo Fanene"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Assignment 8
+library(tinytex)
+library(datasets)
+library(dplyr)
+#1) Run the following code in R ( uncomment the code and run).
+# Consider the friends dataframe you created in Module 4
+# Create a Dataframe
+friends_df<- data.frame( "Name"= c("Monica","Chandler","Ross","Joey","Rachel","Phoebe"),
+                          "Eye_col"=c("Blue","Black","Blue","Brown","Black","Black"),
+                          "Fav_Thx_Gvng_Dish"=c("Turkey","Mashed Potatoes","Leftovers","Stuffing","Pumpkin Pie","Cranberry Sauce"),
+                         "Coffee_Per_Day"=c(3,5,2,4,1,6))
+# We want to create a variable named "Drinking Capacity" and merge with the friends_df data frame. The Variable is created  such that for coffee intake of more than 3 cups, it takes value "High" and "low" for the rest. You might not get an error with the following code but the output is not what you desired. Figure out the issues in the code and correct it. 
+friends_df$Coffee_Per_Day <- as.numeric(friends_df$Coffee_Per_Day)
+friends_df$Drink_Capacity <-ifelse(friends_df$Coffee_Per_Day > 3, "High", "Low")
+# Figure out the issue with the following code and correct it to achieve the above goal
+for(i in 2:length(friends_df)){
+  if(friends_df$Coffee_Per_Day[i]>3) {
+    Drink_Capacity = "High"
+  }else {
+    Drink_Capacity= "Low"
+  }
+}
+print(friends_df)
+# 2) Load the 'iris' dataset from "datasets" package. Create a new variable named "Species No". If the Species is "Setosa", give a Species no of 1 , if the Species is "versicolor", give a Species number as 2 and the rest as 3.
+data(iris)
+iris$Species_No <- ifelse(iris$Species == "setosa", 1, 
+                          ifelse(iris$Species == "versicolor", 2, 3))
+head(iris)
+# 3) Create a new dataset with all the columns in the iris dataset merged with this new column Species No. that you have created in Q1
+new_iris <- iris
+head(new_iris)
+# 4) Find how many 1's,2's and 3's are there in your dataset. 
+table(new_iris$Species_No)
+# 5) There is a function ifelse() in R. Explore that and explain using an example
+
+# 6) Document all the errors incurred in Q1 - Q5 and how did you resolve them.
