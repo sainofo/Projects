@@ -1,0 +1,92 @@
+---
+title: "Assignment 6"
+author: "Nofo Fanene"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Assignment 6 Questions
+
+Submit Assignment 6 as a pdf/html file. Write all your codes and observations in Rmarkdown.
+
+```{r}
+library(tinytex)
+library(knitr)
+```
+
+# 1) Import the Loblolly dataset in R which you did in Assignment 5
+
+```{r # 1) Import the Loblolly dataset in R which you did in Assignment 5}
+library(knitr)
+lob_data <- read.csv(file="C:/Users/nofof/Downloads/Loblolly.csv", header = TRUE, na.strings = "NA")
+print(lob_data)
+```
+
+# 2) See the data types of each variables and check if they make sense or you need to convert the data types
+
+```{r  2) See the data types of each variables and check if they make sense or you need to convert the data types}
+library(knitr)
+lob_data <- read.csv(file="C:/Users/nofof/Downloads/Loblolly.csv", header = TRUE, na.strings = "NA")
+str(lob_data)
+```
+
+# 3) Get the summary of the dataset.
+
+```{r 3) Get the summary of the dataset.}
+library(knitr)
+lob_data <- read.csv(file="C:/Users/nofof/Downloads/Loblolly.csv", header = TRUE, na.strings = "NA")
+summary(lob_data)
+```
+
+# 4) Check for missing values.
+
+```{r 4) Check for missing values.}
+library(knitr)
+lob_data <- read.csv(file="C:/Users/nofof/Downloads/Loblolly.csv", header = TRUE, na.strings = "NA")
+sum(is.na(lob_data))
+colSums(is.na(lob_data))
+is.na(lob_data)
+```
+
+# 5) Do a boxplot of height and tree and interpret
+
+```{r 5) Do a boxplot of height and tree and interpret}
+library(knitr)
+lob_data <- read.csv(file="C:/Users/nofof/Downloads/Loblolly.csv", header = TRUE, na.strings = "NA")
+boxplot(lob_data$height, lob_data$tree, names=c("height", "tree"), main="boxplot of height of tree", ylab="values")
+```
+
+# 6) Do a scatter plot of height and tree. Do you see any pattern ?
+
+```{r 6) Do a scatter plot of height and tree. Do you see any pattern ?}
+library(knitr)
+plot(lob_data$height, lob_data$tree, main="scatter plot of height and tree", xlab="height", ylab="tree", pch=19)
+```
+
+# 7) Pick a seed source of your choice. Subset the data by the selected seed source and find the summary of height and age.Also, plot histograms of height and age and comment on their distributions.
+
+```{r 7) Pick a seed source of your choice. Subset the data by the selected seed source and find the summary of height and age.Also, plot histograms of height and age and comment on their distributions.}
+
+{library(knitr)}
+seed_source <- 'source_a'
+ld_subset <- subset(lob_data, seed_source == 'source_a')
+summary(ld_subset$height)
+summary(ld_subset$age)
+hist(ld_subset$height, main="histogram of height (source_a)", xlab="height",col="lightblue",border="black")
+hist(ld_subset$age, main="histogram of age (source_a)", xlab="age", col="lightgreen",border="black")
+```
+
+# 8) Document all the errors you have incurred and how you have resolved it.
+
+###### My first error was with missing values on the columns. It was a syntax error by typing it as 'col_sums(is.na(lob_data))' which I ended typing it as 'colSums(is.na(lob_data))'
+
+###### My second error was with seed_source not working when running the code. So I made seed_source as a variable.
+
+###### My last error was also syntax in making a histogram of age with source_a which I forgot to add another quotation on the right side of age. So I did add the missing quotation mark which histogram was successfully displayed when running the code.
+
+# 9) Write Q1-Q7 in Rmarkdown and knit it to a pdf

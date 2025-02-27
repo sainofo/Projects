@@ -1,0 +1,78 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Assignment 5
+
+---
+# title: "Loblolly Dataset Analysis"
+# author: "Nofo Fanene" 
+# date: "9/27/24"
+# output: pdf_doc 
+---
+
+# For this Assignment , a rmd file named "Assignment5.rmd" is shared
+
+# with you. You can write your codes and observation in there and rename
+
+# the .rmd file as "Myfirst_report_yourname.rmd" and knit to pdf\*\*
+
+```{r}
+library(readr) 
+library(dplyr) 
+library(ggplot2) 
+library(latexpdf) 
+```
+
+# 1)Import the Loblolly dataset in R as shown in the code above.
+
+```{r}
+Loblolly_df <- read.csv("C:/Users/nofof/Downloads/Loblolly.csv")
+print(Loblolly_df)
+```
+
+# 2) perform all the operations discussed in this module.
+
+```{r}
+# mean and standard deviation of age 
+mean(Loblolly_df$age)
+sd(Loblolly_df$age)
+# mean and standard deviation of height
+mean(Loblolly_df$height)
+sd(Loblolly_df$height) 
+# plot of age vs height
+plot(Loblolly_df$age, Loblolly_df$height, main="Age vs Height",
+xlab="age", ylab="height", col="red",pch=20) 
+# linear regression line
+abline(lm(height ~ age, data=Loblolly_df, col="blue")) 
+```
+
+# 3) Learn "dcast" function to convert a data from 'long' format to 'wide' 
+
+```{r format and apply to the 'molted' dataset discussed above}
+library(reshape2)
+molted_data <- melt(Loblolly_df, id=c("Seed","age"),measure_vars="height") 
+w_data <- dcast(molted_data, Seed ~ age,value.var="value") 
+head(w_data) 
+```
+
+# 4) Did you successfully installed a Latex version in your system? -Yes/No
+
+# Yes
+
+# 5) Did you successfully installed Rmarkdown? -Yes/No
+
+# Yes
+
+# 6) Write down all the errors that you have got or any difficulty that you have faced in Q1-Q4 and report how did you resolve them ? For example, you may ask your instructor/ google your error/ask your friends/refer to book,etc.
+
+# I had errors with importing the csv file to RStudio pasting my path in the code and to print it out with strings but there were errors on it. I resolve it by watching a youtube video of how to import the csv file through the environment tab in rstudio and also to type "Loblolly_df" in console or just implemented "print(Loblolly_df)" in the code to display. The result of that is the csv file was able to display in both ways. With questions 2, there was a warning message about "lm.fit(x, y, offset = offset, singular.ok = singular.ok, ...) :extra argument ‘col’ will be disregarded."
+
+# source link for import csv: <https://www.youtube.com/watch?v=2qkrPin3fAo>
+
+# 7) Do Q1-Q6 in Rmarkdown and knit it to a pdf and name it as instructed above.
